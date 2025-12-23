@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Better With Friends</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url("background.jpg") center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f5f5f5;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    }
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,0.45);
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    #timer {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Better With Friends</h1>
+    <div id="timer"></div>
+  </div>
+
+  <script>
+    const target = new Date("2026-09-27T00:00:00Z").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "The moment has arrived.";
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("timer").innerHTML =
+        `${d}d ${h}h ${m}m ${s}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
